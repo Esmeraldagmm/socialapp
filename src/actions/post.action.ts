@@ -14,7 +14,7 @@ export async function createPost(content: string, image: string) {
         authorId: userId,
       },
     });
-    revalidatePath("/");
+    revalidatePath("/"); //purge the cache for the home page
     return { success: true, post };
   } catch (error) {
     console.log("Error in create post:", error);
