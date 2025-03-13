@@ -40,8 +40,12 @@ export async function getNotifications() {
         createdAt: "desc",
       },
     });
+
     return notifications;
-  } catch (error) {}
+  } catch (error) {
+    console.error("Error fetching notifications:", error);
+    throw new Error("Failed to fetch notifications");
+  }
 }
 
 export async function markNotificationsAsRead(notificationIds: string[]) {
@@ -59,7 +63,7 @@ export async function markNotificationsAsRead(notificationIds: string[]) {
 
     return { success: true };
   } catch (error) {
-    console.error("Error in marking notification as read", error);
+    console.error("Error marking notifications as read:", error);
     return { success: false };
   }
 }
